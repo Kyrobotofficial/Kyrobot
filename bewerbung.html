@@ -3,6 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kyro | Team Bewerbung</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+    --primary:#5865F2;
+    --primary2:#22d3ee;
+    --bg:#0a0f1f;
+    --card:#141a2e;
+    --input:#1b223a;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Segoe UI, sans-serif;
+    background:linear-gradient(135deg,#0a0f1f,#0e1630);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    background:var(--card);
+    padding:40px;
+    width:420px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(88,101,242,0.3);
+}
+
+.logo{
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+    background:linear-gradient(90deg,var(--primary),var(--primary2));
+    -webkit-background-clip:text;
+    color:transparent;
+    margin-bottom:20px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+label{
+    font-size:14px;
+    display:block;
+    margin-bottom:6px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:var(--input);
+    color:white;
+    font-size:14px;
+}
+
+textarea{
+    resize:none;
+    height:90px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(90deg,var(--primary),var(--primary2));
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+button:disabled{
+    opacity:0.6;
+    cursor:not-allowed;
+}
+
+#statusMsg{
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">KYRO</div>
+    <h2>Team Bewerbung</h2>
+
+    <form id="bewerbungsForm">
+
+        <div class="input-group">
+            <label>Kategorie</label>
+            <select id="category" required>
+                <option value="">Kategorie wählen</option>
+                <option value="Support">Support</option>
+                <option value="Moderator">Moderator</option>
+                <option value="Developer">Developer</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Discord Name</label>
+            <input type="text" id="discordName" required>
+        </div>
+
+        <div class="input-group">
+            <label>Alter</label>
+            <input type="number" id="age" required>
+        </div>
+
+        <div class="input-group">
+            <label>Warum sollten wir dich nehmen?</label>
+            <textarea id="reason" required></textarea>
+        </div>
+
+        <button type="submit">Bewerbung senden</button>
+        <div id="statusMsg"></div>
+
+    </form>
+
+</div>
+
+<script>
+
+const webhookURL = "HIER_DEIN_NEUER_WEBHOOK"; // ← einsetzen
+let isSending = false;
+
+const form = document.getElementById("bewerbungsForm");
+const button = form.querySelector("button");
+const statusMsg = document.getElementById("statusMsg");
+
+form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+
+    if(isSending) return;
+    isSending = true;
+
+    button.disabled = true;
+    button.innerText = "Wird gesendet...";
+    statusMsg.innerText = "";
+
+    const data = {
+        category: document.getElementById("category").value,
+        discord: document.getElementById("discordName").value,
+        age: document.getElementById("age").value,
+        reason: document.getElementById("reason").value
+    };
+
+    try{
+        const response = await fetch(webhookURL,{
+            method:"POST",
+            headers:{ "Content-Type":"application/json" },
+            body: JSON.stringify({
+                username:"Kyro Bewerbung",
+                embeds:[{
+                    title:"🚀 Neue Bewerbung",
+                    color:5793266,
+                    fields:[
+                        {name:"Kategorie",value:data.category},
+                        {name:"Discord",value:data.discord},
+                        {name:"Alter",value:data.age},
+                        {name:"Motivation",value:data.reason}
+                    ],
+                    timestamp:new Date()
+                }]
+            })
+        });
+
+        if(response.ok){
+            statusMsg.innerText="Bewerbung erfolgreich gesendet!";
+            statusMsg.style.color="lime";
+            form.reset();
+        } else {
+            throw new Error();
+        }
+
+    } catch {
+        statusMsg.innerText="Fehler beim Senden!";
+        statusMsg.style.color="red";
+    }
+
+    button.disabled = false;
+    button.innerText = "Bewerbung senden";
+    isSending = false;
+});
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kyro Bewerbung</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -457,4 +675,5 @@ form.addEventListener("submit", async(e)=>{
 
 </body>
 </html>
+
 
