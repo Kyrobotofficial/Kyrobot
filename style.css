@@ -378,40 +378,6 @@ footer{
     transform:scale(1.05);
     box-shadow:0 0 25px #00e0ff;
 }
- /* ============================= */
-/* MOBILE NAV FIX */
-/* ============================= */
-
-@media(max-width:900px){
-
-    /* Sidebar auf Handy deaktivieren */
-    .sidebar{
-        display:none;
-    }
-
-    /* Navbar sauber anordnen */
-    .navbar{
-        padding:15px 5%;
-        flex-direction:row;
-        justify-content:space-between;
-    }
-
-    .navbar nav{
-        display:flex;
-        gap:12px;
-        align-items:center;
-    }
-
-    .navbar nav a{
-        margin-left:0;
-        font-size:14px;
-    }
-
-    .btn-nav{
-        padding:6px 14px;
-        font-size:13px;
-        border-radius:20px;
-    }
 
     /* ============================= */
 /* BEWERBUNG SECTION */
@@ -488,5 +454,6 @@ footer{
     }
     
 }
+
 
 
