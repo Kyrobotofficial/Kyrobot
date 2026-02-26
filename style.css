@@ -1,0 +1,382 @@
+:root{
+    --dark:#040714;
+    --dark2:#0a0f2b;
+    --blue:#0044ff;
+    --cyan:#00e0ff;
+    --purple:#6c5cff;
+    --glass:rgba(255,255,255,0.06);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--dark);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ============================= */
+/* ANIMATED BACKGROUND */
+/* ============================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:linear-gradient(-45deg,var(--dark2),var(--blue),var(--purple),var(--dark2));
+    background-size:400% 400%;
+    animation:gradient 18s ease infinite;
+    opacity:0.35;
+    z-index:-2;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* ============================= */
+/* NAVBAR */
+/* ============================= */
+
+.navbar{
+    position:fixed;
+    width:100%;
+    padding:25px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(25px);
+    background:rgba(0,0,0,0.35);
+    border-bottom:1px solid #ffffff15;
+    z-index:1000;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:800;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.navbar nav a{
+    margin-left:30px;
+    text-decoration:none;
+    color:#aaa;
+    transition:0.3s;
+    position:relative;
+}
+
+.navbar nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0%;
+    height:2px;
+    background:var(--cyan);
+    transition:0.3s;
+}
+
+.navbar nav a:hover{
+    color:white;
+}
+
+.navbar nav a:hover::after{
+    width:100%;
+}
+
+.btn-nav{
+    padding:8px 22px;
+    border-radius:50px;
+    background:linear-gradient(90deg,var(--blue),var(--purple));
+    color:white!important;
+    box-shadow:0 0 20px #0044ff50;
+}
+
+/* ============================= */
+/* SIDEBAR */
+/* ============================= */
+
+.sidebar{
+    position:fixed;
+    left:-220px;
+    top:0;
+    width:220px;
+    height:100%;
+    background:linear-gradient(180deg,var(--dark2),var(--dark));
+    transition:0.4s;
+    padding-top:120px;
+    box-shadow:5px 0 40px #000;
+}
+
+.sidebar:hover{
+    left:0;
+}
+
+.sidebar-content{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    padding-left:30px;
+}
+
+.sidebar a{
+    text-decoration:none;
+    color:#bbb;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    color:var(--cyan);
+    transform:translateX(12px);
+}
+
+/* ============================= */
+/* HERO */
+/* ============================= */
+
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 20px;
+    gap:30px;
+}
+
+.hero h1{
+    font-size:75px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    -webkit-background-clip:text;
+    color:transparent;
+    text-shadow:0 0 40px #00e0ff40;
+}
+
+.hero p{
+    max-width:650px;
+    color:#ccc;
+    line-height:1.8;
+    font-size:18px;
+}
+
+/* ============================= */
+/* STATUS BOX */
+/* ============================= */
+
+.live-status{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 30px;
+    background:var(--glass);
+    border-radius:50px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 0 30px #00000060;
+}
+
+.status-dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:lime;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 0 0 #00ff0055;}
+    70%{box-shadow:0 0 0 15px transparent;}
+    100%{box-shadow:0 0 0 0 transparent;}
+}
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+.btn-main{
+    padding:16px 45px;
+    border-radius:50px;
+    background:linear-gradient(90deg,var(--blue),var(--purple));
+    text-decoration:none;
+    color:white;
+    transition:0.4s;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.btn-main:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 50px var(--cyan);
+}
+
+/* ============================= */
+/* SECTIONS */
+/* ============================= */
+
+section{
+    padding:140px 10%;
+}
+
+h2{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:70px;
+}
+
+/* ============================= */
+/* CARDS */
+/* ============================= */
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:50px;
+}
+
+.card{
+    padding:45px;
+    border-radius:25px;
+    background:var(--glass);
+    backdrop-filter:blur(25px);
+    transition:0.4s;
+    border:1px solid #ffffff10;
+}
+
+.card:hover{
+    transform:translateY(-12px);
+    box-shadow:0 0 60px var(--cyan);
+}
+
+/* ============================= */
+/* TEAM */
+/* ============================= */
+
+.team-grid{
+    display:flex;
+    justify-content:center;
+    gap:100px;
+    flex-wrap:wrap;
+}
+
+.team-card{
+    width:300px;
+    text-align:center;
+    padding:50px;
+    border-radius:25px;
+    background:var(--glass);
+    backdrop-filter:blur(25px);
+    transition:0.4s;
+    border:1px solid #ffffff10;
+}
+
+.team-card:hover{
+    transform:translateY(-12px) scale(1.03);
+    box-shadow:0 0 60px var(--purple);
+}
+
+.team-card img{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:50%;
+    margin-bottom:25px;
+    border:3px solid var(--cyan);
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+
+footer{
+    text-align:center;
+    padding:50px;
+    background:rgba(0,0,0,0.4);
+    font-size:14px;
+    color:#aaa;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media(max-width:900px){
+
+    .hero h1{
+        font-size:50px;
+    }
+
+    .team-grid{
+        gap:50px;
+    }
+
+    .navbar{
+        padding:20px 5%;
+    }
+
+  /* FORCE Bewerbung Styling */
+
+.bewerbung{
+    padding-top:180px;
+    max-width:700px;
+    margin:0 auto;
+    text-align:center;
+}
+
+#bewerbungsForm{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    background:rgba(255,255,255,0.06);
+    padding:50px;
+    border-radius:25px;
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 0 40px rgba(0,0,0,0.6);
+}
+
+#bewerbungsForm input,
+#bewerbungsForm select,
+#bewerbungsForm textarea{
+    padding:15px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.05);
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+#bewerbungsForm input:focus,
+#bewerbungsForm select:focus,
+#bewerbungsForm textarea:focus{
+    border-color:#00e0ff;
+    box-shadow:0 0 15px #00e0ff;
+}
+
+#bewerbungsForm button{
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(90deg,#0044ff,#6c5cff);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#bewerbungsForm button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 25px #00e0ff;
+}
+
+}

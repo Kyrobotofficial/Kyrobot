@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bewerbung | Kyro Bot</title>
+
+<style>
+:root{
+    --dark:#040714;
+    --dark2:#0a0f2b;
+    --blue:#0044ff;
+    --cyan:#00e0ff;
+    --purple:#6c5cff;
+    --glass:rgba(255,255,255,0.06);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--dark);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Animated Background */
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:linear-gradient(-45deg,var(--dark2),var(--blue),var(--purple),var(--dark2));
+    background-size:400% 400%;
+    animation:gradient 18s ease infinite;
+    opacity:0.35;
+    z-index:-2;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* Navbar */
+.navbar{
+    position:fixed;
+    width:100%;
+    padding:25px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(25px);
+    background:rgba(0,0,0,0.35);
+    border-bottom:1px solid #ffffff15;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:800;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* Bewerbung Section */
+.bewerbung{
+    padding-top:180px;
+    max-width:700px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.bewerbung h1{
+    font-size:48px;
+    margin-bottom:40px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* Form */
+#bewerbungsForm{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    background:var(--glass);
+    padding:50px;
+    border-radius:25px;
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 0 40px rgba(0,0,0,0.6);
+}
+
+/* Inputs */
+#bewerbungsForm input,
+#bewerbungsForm textarea,
+#bewerbungsForm select{
+    padding:15px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.2);
+    background:#0a0f2b; /* DUNKEL */
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+/* Dropdown Optionen */
+#bewerbungsForm select option{
+    background:#0a0f2b;
+    color:white;
+}
+
+#bewerbungsForm select option:disabled{
+    color:gray;
+}
+
+/* Focus Effekt */
+#bewerbungsForm input:focus,
+#bewerbungsForm select:focus,
+#bewerbungsForm textarea:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 15px var(--cyan);
+}
+
+#bewerbungsForm textarea{
+    resize:none;
+    height:120px;
+}
+
+/* Button */
+#bewerbungsForm button{
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(90deg,var(--blue),var(--purple));
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#bewerbungsForm button:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+}
+
+#bewerbungsForm button:hover:not(:disabled){
+    transform:scale(1.05);
+    box-shadow:0 0 25px var(--cyan);
+}
+
+#statusMsg{
+    margin-top:10px;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">KYRO</div>
+</header>
+
+<section class="bewerbung">
+    <h1>Team Bewerbung</h1>
+
+    <form id="bewerbungsForm">
+
+        <!-- WICHTIG: ID hinzugefügt -->
+        <select id="category" required>
+            <option value="">Kategorie wählen</option>
+            <option value="Support">Support</option>
+            <option value="Moderator">Moderator</option>
+            <option value="Developer">Developer</option>
+        </select>
+
+        <input type="text" id="discordName" placeholder="Discord Name" required>
+        <input type="number" id="age" placeholder="Alter" required>
+        <textarea id="reason" placeholder="Warum sollten wir dich nehmen?" required></textarea>
+
+        <button type="submit">Bewerbung senden</button>
+        <p id="statusMsg"></p>
+    </form>
+</section>
+
+<script>
+// ===== Einstellungen =====
+const categoryStatus = {
+    "Support": true,
+    "Moderator": true,
+    "Developer": true // geschlossen --false is close
+};
+
+const categorySelect = document.getElementById("category");
+const submitButton = document.querySelector("#bewerbungsForm button");
+
+// Optionen deaktivieren
+Object.keys(categoryStatus).forEach(cat => {
+    const option = [...categorySelect.options].find(o => o.value === cat);
+
+    if(option && !categoryStatus[cat]){
+        option.disabled = true;
+        option.text = cat + " (Geschlossen)";
+    }
+});
+
+// Falls jemand Trick versucht
+categorySelect.addEventListener("change", () => {
+    if(!categoryStatus[categorySelect.value]){
+        submitButton.disabled = true;
+    }else{
+        submitButton.disabled = false;
+    }
+});
+</script>
+
+</body>
+</html>
