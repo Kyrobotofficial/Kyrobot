@@ -3,191 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bewirb dich beim Kyro Bot Team. Werde Teil unseres Discord Projekts.">
 <title>Bewerbung | Kyro Bot</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --dark:#040714;
-    --dark2:#0a0f2b;
-    --blue:#0044ff;
-    --cyan:#00e0ff;
-    --purple:#6c5cff;
-    --glass:rgba(255,255,255,0.06);
+    --bg:#0b0f1f;
+    --card:#141a33;
+    --accent:#5865F2;
+    --accent2:#00e0ff;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
     font-family:'Inter',sans-serif;
-    background:var(--dark);
+    background:var(--bg);
     color:white;
-    overflow-x:hidden;
-}
-
-/* Animated Background */
-body::before{
-    content:"";
-    position:fixed;
-    width:200%;
-    height:200%;
-    background:linear-gradient(-45deg,var(--dark2),var(--blue),var(--purple),var(--dark2));
-    background-size:400% 400%;
-    animation:gradient 18s ease infinite;
-    opacity:0.35;
-    z-index:-2;
-}
-
-@keyframes gradient{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-/* Navbar */
-.navbar{
-    position:fixed;
-    width:100%;
-    padding:25px 10%;
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    backdrop-filter:blur(25px);
-    background:rgba(0,0,0,0.35);
-    border-bottom:1px solid #ffffff15;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+header{
+    padding:25px 8%;
+    background:#11162b;
+    border-bottom:1px solid #ffffff10;
 }
 
 .logo{
-    font-size:26px;
+    font-size:22px;
     font-weight:800;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
     -webkit-background-clip:text;
     color:transparent;
 }
 
-/* Bewerbung Section */
-.bewerbung{
-    padding-top:180px;
-    max-width:700px;
-    margin:0 auto;
+main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:60px 20px;
+}
+
+.card{
+    background:var(--card);
+    padding:40px;
+    border-radius:20px;
+    width:100%;
+    max-width:600px;
+    box-shadow:0 0 30px rgba(0,0,0,0.6);
+}
+
+h1{
     text-align:center;
+    margin-bottom:30px;
+    font-size:28px;
 }
 
-.bewerbung h1{
-    font-size:42px;
-    margin-bottom:40px;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-/* Form */
-#bewerbungsForm{
+form{
     display:flex;
     flex-direction:column;
-    gap:25px;
-    background:var(--glass);
-    padding:50px;
-    border-radius:25px;
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,0.15);
-    box-shadow:0 0 40px rgba(0,0,0,0.6);
+    gap:20px;
 }
 
-/* Inputs */
-#bewerbungsForm input,
-#bewerbungsForm textarea,
-#bewerbungsForm select{
-    padding:15px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,0.2);
-    background:#0a0f2b;
+input, select, textarea{
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #ffffff15;
+    background:#0f1429;
     color:white;
-    font-size:16px;
-    outline:none;
+    font-size:14px;
 }
 
-#bewerbungsForm select option{
-    background:#0a0f2b;
-    color:white;
-}
-
-#bewerbungsForm select option:disabled{
-    color:gray;
-}
-
-#bewerbungsForm input:focus,
-#bewerbungsForm select:focus,
-#bewerbungsForm textarea:focus{
-    border-color:var(--cyan);
-    box-shadow:0 0 15px var(--cyan);
-}
-
-#bewerbungsForm textarea{
+textarea{
     resize:none;
     height:120px;
 }
 
-/* Button */
-#bewerbungsForm button{
-    padding:15px;
+button{
+    padding:14px;
     border:none;
-    border-radius:50px;
-    background:linear-gradient(90deg,var(--blue),var(--purple));
+    border-radius:40px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
     color:white;
     font-weight:600;
     cursor:pointer;
     transition:0.3s;
 }
 
-#bewerbungsForm button:hover:not(:disabled){
+button:hover:not(:disabled){
     transform:scale(1.05);
-    box-shadow:0 0 25px var(--cyan);
 }
 
-#bewerbungsForm button:disabled{
-    opacity:0.5;
+button:disabled{
+    opacity:0.6;
     cursor:not-allowed;
 }
 
-#statusMsg{
-    margin-top:10px;
+.status{
+    text-align:center;
     font-size:14px;
+    min-height:20px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#11162b;
+    font-size:13px;
+    border-top:1px solid #ffffff10;
 }
 </style>
 </head>
 
 <body>
 
-<header class="navbar">
+<header>
     <div class="logo">KYRO</div>
 </header>
 
-<section class="bewerbung">
-    <h1>Team Bewerbung</h1>
+<main>
+    <div class="card">
+        <h1>Team Bewerbung</h1>
 
-    <form id="bewerbungsForm">
+        <form id="bewerbungsForm">
 
-        <select id="category" required>
-            <option value="">Kategorie wählen</option>
-            <option value="Support">Support</option>
-            <option value="Moderator">Moderator</option>
-            <option value="Developer">Developer</option>
-        </select>
+            <select id="category" required>
+                <option value="">Kategorie wählen</option>
+                <option value="Support">Support</option>
+                <option value="Moderator">Moderator</option>
+                <option value="Developer">Developer</option>
+            </select>
 
-        <input type="text" id="discordName" placeholder="Discord Name" required>
-        <input type="number" id="age" placeholder="Alter" required>
-        <textarea id="reason" placeholder="Warum sollten wir dich nehmen?" required></textarea>
+            <input type="text" id="discordName" placeholder="Discord Name" required>
+            <input type="number" id="age" placeholder="Alter" required>
+            <textarea id="reason" placeholder="Warum sollten wir dich nehmen?" required></textarea>
 
-        <button type="submit">Bewerbung senden</button>
-        <p id="statusMsg"></p>
-    </form>
-</section>
+            <button type="submit">Bewerbung senden</button>
+            <div class="status" id="statusMsg"></div>
+        </form>
+    </div>
+</main>
+
+<footer>
+    © 2026 Kyro Bot | Alle Rechte vorbehalten
+</footer>
 
 <script>
-const webhookURL = "https://discord.com/api/webhooks/1476684437625503988/e3cMMtwe-qKkY0t-hwIOX2v-d1xIyDExvUdbE4vjUZVDbaGB1HCAonMg1pxFUoTrWJOy";
 
+// ===== HIER NEUEN WEBHOOK EINSETZEN =====
+const webhookURL = "HIER_NEUEN_WEBHOOK_EINFÜGEN";
+
+// ===== KATEGORIEN STEUERUNG =====
 const categoryStatus = {
     "Support": true,
     "Moderator": true,
@@ -196,58 +167,42 @@ const categoryStatus = {
 
 const form = document.getElementById("bewerbungsForm");
 const categorySelect = document.getElementById("category");
-const submitButton = document.querySelector("#bewerbungsForm button");
+const submitButton = form.querySelector("button");
 const statusMsg = document.getElementById("statusMsg");
 
 // Kategorien deaktivieren
-Object.keys(categoryStatus).forEach(cat => {
-    const option = [...categorySelect.options].find(o => o.value === cat);
+Object.keys(categoryStatus).forEach(cat=>{
+    const option=[...categorySelect.options].find(o=>o.value===cat);
     if(option && !categoryStatus[cat]){
-        option.disabled = true;
-        option.text = cat + " (Geschlossen)";
+        option.disabled=true;
+        option.text=cat+" (Geschlossen)";
     }
 });
 
-// Kategorie wechseln
-categorySelect.addEventListener("change", () => {
-    if(!categoryStatus[categorySelect.value]){
-        submitButton.disabled = true;
-        statusMsg.innerText = "Diese Kategorie ist geschlossen.";
-        statusMsg.style.color = "red";
-    }else{
-        submitButton.disabled = false;
-        statusMsg.innerText = "";
-    }
-});
-
-// Formular senden
-form.addEventListener("submit", async (e) => {
+// Submit
+form.addEventListener("submit", async(e)=>{
     e.preventDefault();
 
-    const category = categorySelect.value;
-    const discordName = document.getElementById("discordName").value;
-    const age = document.getElementById("age").value;
-    const reason = document.getElementById("reason").value;
+    if(!categoryStatus[categorySelect.value]) return;
 
-    if(!categoryStatus[category]) return;
-
-    submitButton.disabled = true;
-    submitButton.innerText = "Wird gesendet...";
-    statusMsg.innerText = "";
+    submitButton.disabled=true;
+    submitButton.innerText="Wird gesendet...";
+    statusMsg.innerText="";
+    statusMsg.style.color="white";
 
     try{
-        const response = await fetch(webhookURL,{
+        const response=await fetch(webhookURL,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
                 embeds:[{
                     title:"Neue Bewerbung",
-                    color:3447003,
+                    color:5793266,
                     fields:[
-                        {name:"Kategorie",value:category},
-                        {name:"Discord Name",value:discordName},
-                        {name:"Alter",value:age},
-                        {name:"Motivation",value:reason}
+                        {name:"Kategorie",value:categorySelect.value},
+                        {name:"Discord",value:discordName.value},
+                        {name:"Alter",value:age.value},
+                        {name:"Motivation",value:reason.value}
                     ],
                     timestamp:new Date()
                 }]
@@ -255,249 +210,23 @@ form.addEventListener("submit", async (e) => {
         });
 
         if(response.ok){
-            statusMsg.innerText = "Bewerbung wurde eingeschickt!";
-            statusMsg.style.color = "lime";
+            statusMsg.innerText="Bewerbung wurde eingeschickt!";
+            statusMsg.style.color="lime";
             form.reset();
         }else{
             throw new Error();
         }
 
     }catch{
-        statusMsg.innerText = "Hat nicht funktioniert!";
-        statusMsg.style.color = "red";
+        statusMsg.innerText="Hat nicht funktioniert!";
+        statusMsg.style.color="red";
     }
 
-    submitButton.disabled = false;
-    submitButton.innerText = "Bewerbung senden";
+    submitButton.disabled=false;
+    submitButton.innerText="Bewerbung senden";
 });
+
 </script>
 
 </body>
-</html><!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bewerbung | Kyro Bot</title>
-
-<style>
-:root{
-    --dark:#040714;
-    --dark2:#0a0f2b;
-    --blue:#0044ff;
-    --cyan:#00e0ff;
-    --purple:#6c5cff;
-    --glass:rgba(255,255,255,0.06);
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:'Inter',sans-serif;
-    background:var(--dark);
-    color:white;
-    overflow-x:hidden;
-}
-
-/* Animated Background */
-body::before{
-    content:"";
-    position:fixed;
-    width:200%;
-    height:200%;
-    background:linear-gradient(-45deg,var(--dark2),var(--blue),var(--purple),var(--dark2));
-    background-size:400% 400%;
-    animation:gradient 18s ease infinite;
-    opacity:0.35;
-    z-index:-2;
-}
-
-@keyframes gradient{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-/* Navbar */
-.navbar{
-    position:fixed;
-    width:100%;
-    padding:25px 10%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    backdrop-filter:blur(25px);
-    background:rgba(0,0,0,0.35);
-    border-bottom:1px solid #ffffff15;
-}
-
-.logo{
-    font-size:26px;
-    font-weight:800;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-/* Bewerbung Section */
-.bewerbung{
-    padding-top:180px;
-    max-width:700px;
-    margin:0 auto;
-    text-align:center;
-}
-
-.bewerbung h1{
-    font-size:48px;
-    margin-bottom:40px;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-/* Form */
-#bewerbungsForm{
-    display:flex;
-    flex-direction:column;
-    gap:25px;
-    background:var(--glass);
-    padding:50px;
-    border-radius:25px;
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,0.15);
-    box-shadow:0 0 40px rgba(0,0,0,0.6);
-}
-
-/* Inputs */
-#bewerbungsForm input,
-#bewerbungsForm textarea,
-#bewerbungsForm select{
-    padding:15px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,0.2);
-    background:#0a0f2b; /* DUNKEL */
-    color:white;
-    font-size:16px;
-    outline:none;
-}
-
-/* Dropdown Optionen */
-#bewerbungsForm select option{
-    background:#0a0f2b;
-    color:white;
-}
-
-#bewerbungsForm select option:disabled{
-    color:gray;
-}
-
-/* Focus Effekt */
-#bewerbungsForm input:focus,
-#bewerbungsForm select:focus,
-#bewerbungsForm textarea:focus{
-    border-color:var(--cyan);
-    box-shadow:0 0 15px var(--cyan);
-}
-
-#bewerbungsForm textarea{
-    resize:none;
-    height:120px;
-}
-
-/* Button */
-#bewerbungsForm button{
-    padding:15px;
-    border:none;
-    border-radius:50px;
-    background:linear-gradient(90deg,var(--blue),var(--purple));
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-#bewerbungsForm button:disabled{
-    opacity:0.5;
-    cursor:not-allowed;
-}
-
-#bewerbungsForm button:hover:not(:disabled){
-    transform:scale(1.05);
-    box-shadow:0 0 25px var(--cyan);
-}
-
-#statusMsg{
-    margin-top:10px;
-    font-size:14px;
-}
-</style>
-</head>
-
-<body>
-
-<header class="navbar">
-    <div class="logo">KYRO</div>
-</header>
-
-<section class="bewerbung">
-    <h1>Team Bewerbung</h1>
-
-    <form id="bewerbungsForm">
-
-        <!-- WICHTIG: ID hinzugefügt -->
-        <select id="category" required>
-            <option value="">Kategorie wählen</option>
-            <option value="Support">Support</option>
-            <option value="Moderator">Moderator</option>
-            <option value="Developer">Developer</option>
-        </select>
-
-        <input type="text" id="discordName" placeholder="Discord Name" required>
-        <input type="number" id="age" placeholder="Alter" required>
-        <textarea id="reason" placeholder="Warum sollten wir dich nehmen?" required></textarea>
-
-        <button type="submit">Bewerbung senden</button>
-        <p id="statusMsg"></p>
-    </form>
-</section>
-
-<script>
-// ===== Einstellungen =====
-const categoryStatus = {
-    "Support": false,
-    "Moderator": false,
-    "Developer": true // geschlossen --false is close
-};
-
-const categorySelect = document.getElementById("category");
-const submitButton = document.querySelector("#bewerbungsForm button");
-
-// Optionen deaktivieren
-Object.keys(categoryStatus).forEach(cat => {
-    const option = [...categorySelect.options].find(o => o.value === cat);
-
-    if(option && !categoryStatus[cat]){
-        option.disabled = true;
-        option.text = cat + " (Geschlossen)";
-    }
-});
-
-// Falls jemand Trick versucht
-categorySelect.addEventListener("change", () => {
-    if(!categoryStatus[categorySelect.value]){
-        submitButton.disabled = true;
-    }else{
-        submitButton.disabled = false;
-    }
-});
-</script>
-
-</body>
-
 </html>
-
-
